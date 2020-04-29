@@ -27,52 +27,7 @@ var construirCapes = {} = function(MapView,WebMap,Layer,MapImageLayer,Portal,Bas
               nextBasemap: "satellite"  
     });  
     
-    // CAPA PUNTS - Tipus Map (raster)			
-    var layer = new MapImageLayer({
-      url: "https://agedev01.icgc.local/server/rest/services/lliscat_punts_map_dev/MapServer",
-      
-      sublayers: [
-        {
-          id:0,
-        visible:true,
-        definitionExpression: `id_mov = '${moviment}'`
-        }
-      ] 
-              
-    });
-    map.add(layer);  
-    
-    
-    // CAPA ARCS - Tipus Map (raster)
-    var layer = new MapImageLayer({
-      url: "https://agedev01.icgc.local/server/rest/services/lliscat_arcs_map_dev/MapServer",
-      
-      sublayers: [
-        {
-          id:0,
-        visible:true,
-        definitionExpression: `id_mov = '${moviment}'`
-        }
-      ] 
-              
-    });
-    map.add(layer);  	
-    
-    
-    // CAPA POLIGONS - Tipus Map (raster)
-    var layer = new MapImageLayer({
-            url: "https://agedev01.icgc.local/server/rest/services/lliscat_poligons_map_dev/MapServer",
-            
-      sublayers: [
-        {
-          id:0,
-        visible:true,
-        definitionExpression: `id_mov = '${moviment}'`
-        }
-      ] 
-                            
-          });
-    map.add(layer); 
+     
     return {map,view,toggle};
 }
 

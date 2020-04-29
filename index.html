@@ -22,30 +22,11 @@
     />
     <script type="text/javascript" src="js/capes.js"></script>
     <script type="text/javascript" src="js/cercadorPelias.js"></script>
-    <script type="text/javascript" src="js/cercadorICGCCorpo.js"></script>
   </head>
   <body>
     <div id="viewDiv"></div>
     <script src="https://js.arcgis.com/4.14/"></script>
-    <script>
-      var urlParams = new URLSearchParams(window.location.search);          
-      var moviment = urlParams.get('moviment');
-      var xcenter = urlParams.get('xcenter');
-      var ycenter = urlParams.get('ycenter');
-      var zoom = urlParams.get('zoom');
-      console.log("Parametre moviment: "+urlParams.get('moviment')); 
-      console.log("Parametre xcenter: "+urlParams.get('xcenter')); 
-      console.log("Parametre ycenter: "+urlParams.get('ycenter')); 
-      console.log("Parametre zoom: "+urlParams.get('zoom')); 
-      if (moviment == undefined) {
-         alert("No s'ha passat cap parametre moviment");            
-      }      
-      if (xcenter == undefined || ycenter == undefined) {
-         alert("No s'ha passat els parametres xcenter o ycenter");   
-         xcenter = 1.677472;
-         ycenter = 41.761689;
-      }        
-
+    <script>      
       require([        
         "esri/Graphic",    //Per funcions relacionades amb cercador
         "esri/request",    //Per funcions relacionades amb cercador 

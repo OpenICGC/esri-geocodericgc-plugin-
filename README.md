@@ -13,6 +13,10 @@ Utilitzar les llibres d'ESRI.
 **Pas 1:** Al codi HTML, importar els fitxers d'ESRI i les llibreries que necessitarem
 
 ```javascript
+//Widget cerca Pelias
+<script type="text/javascript" src="js/cercadorPelias.js"></script>
+
+//Llibreries ESRI
 <div id="viewDiv"></div>
 <script src="https://js.arcgis.com/4.14/"></script>
 require([        
@@ -56,7 +60,7 @@ var searchWidget = new Search({
 });
 // Add the search widget to the top left corner of the view        
 view.ui.add(searchWidget, {
-    position: "top-right"
+    position: "top-left"
 }); 
 ```
 

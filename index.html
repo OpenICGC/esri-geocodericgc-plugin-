@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>Visor Proves Geocodificador</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.14/esri/themes/light/main.css"
+    />
+    <script type="text/javascript" src="js/capes.js"></script>
+    <script type="text/javascript" src="js/cercadorPelias.js"></script>
+    <script type="text/javascript" src="js/cercadorICGCCorpo.js"></script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+    <script src="https://js.arcgis.com/4.14/"></script>
+    <script>
+      var urlParams = new URLSearchParams(window.location.search);          
+      var moviment = urlParams.get('moviment');
+      var xcenter = urlParams.get('xcenter');
+      var ycenter = urlParams.get('ycenter');
+      var zoom = urlParams.get('zoom');
+      console.log("Parametre moviment: "+urlParams.get('moviment')); 
+      console.log("Parametre xcenter: "+urlParams.get('xcenter')); 
+      console.log("Parametre ycenter: "+urlParams.get('ycenter')); 
+      console.log("Parametre zoom: "+urlParams.get('zoom')); 
+      if (moviment == undefined) {
+         alert("No s'ha passat cap parametre moviment");            
+      }      
+      if (xcenter == undefined || ycenter == undefined) {
+         alert("No s'ha passat els parametres xcenter o ycenter");   
+         xcenter = 1.677472;
+         ycenter = 41.761689;
+      }        
+
+      require([        
+        "esri/Graphic",    //Per funcions relacionades amb cercador
+        "esri/request",    //Per funcions relacionades amb cercador 
+        "esri/views/MapView",
+        "esri/widgets/Search",   //Per funcions relacionades amb cercador
+        "esri/widgets/Search/SearchSource",  //Per funcions relacionades amb cercador
+        "esri/geometry/geometryEngine",  //Per funcions relacionades amb cercador
+        "esri/geometry/Point",  //Per funcions relacionades amb cercador
+        "esri/WebMap",
+        "esri/layers/Layer",
+        "esri/layers/MapImageLayer",
+        "esri/portal/Portal",
+        "esri/widgets/BasemapToggle"
+      ], function(        
+        Graphic,
+        esriRequest,
+        MapView,
+        Search,
+        SearchSource,
+        geometryEngine,
+        Point,
+        WebMap,
+		    Layer,
+        MapImageLayer,
+        Portal,
+        BasemapToggle
+      ) {
+          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          //   PART CAPES
+          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          var{map,view,toggle} = construirCapes(MapView,WebMap,Layer,MapImageLayer,Portal,BasemapToggle);  
+          
+          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          //   PART DEL CERCADOR
+          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          // Create Search widget using custom SearchSource
+          var searchWidget = new Search({
+              view: view,
+              //Geocodificador  PELIAS per Topònims
+              sources: [customSearchSource(Graphic,esriRequest,MapView,Search,SearchSource,geometryEngine,Point)],  
+          
+              includeDefaultSources: false
+          });
+          // Add the search widget to the top left corner of the view        
+          view.ui.add(searchWidget, {
+              position: "top-right"
+          });   
+
+          // WIDGET de TOGGLE
+          view.ui.add(toggle, "top-right");   //Afegeixo widget de toggle a dalt a la dreta
+      });
+
+      function zoomToScale(zoom) {
+         // Pas de nivells de zoom a escala. E zoom no funciona amb webmaps coma mapa base
+         var scale;
+         switch (zoom) {
+            case '20': scale = 1128.497220;break;
+            case '19': scale = 2256.994440;break;
+            case '18': scale = 4513.988880;break;
+            case '17': scale = 9027.977761;break;
+            case '16': scale = 18055.955520;break;
+            case '15': scale = 36111.911040;break;
+            case '14': scale = 72223.822090;break;
+            case '13': scale = 144447.644200;break;
+            case '12': scale = 288895.288400;break;
+            case '11': scale = 577790.576700;break;
+            case '10': scale = 1155581.153000;break;
+            case '9': scale = 2311162.307000;break;
+            case '8': scale = 4622324.614000;break;
+            case '7': scale = 9244649.227000;break;
+            case '6': scale = 18489298.450000;break;
+            case '5': scale = 36978596.910000;break;
+            case '4': scale = 73957193.820000;break;
+            case '3': scale = 147914387.600000;break;
+            case '2': scale = 295828775.300000;break;
+            case '1': scale = 591657550.500000;
+         }
+         return scale
+      }
+
+    </script>
+
+
+  </body>
+</html>

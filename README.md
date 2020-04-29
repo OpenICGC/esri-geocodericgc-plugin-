@@ -60,7 +60,7 @@ var searchWidget = new Search({
 });
 // Add the search widget to the top left corner of the view        
 view.ui.add(searchWidget, {
-    position: "top-left"
+    position: "top-right"
 }); 
 ```
 

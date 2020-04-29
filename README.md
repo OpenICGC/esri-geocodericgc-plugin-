@@ -10,7 +10,7 @@ Utilitzar les llibres d'ESRI.
 
 ## Ús bàsic
 
-**Pas 1:** Al codi HTML, importar els fitxers d'ESRI i les llibres que necessitarem
+**Pas 1:** Al codi HTML, importar els fitxers d'ESRI i les llibreries que necessitarem
 
 ```javascript
 <div id="viewDiv"></div>

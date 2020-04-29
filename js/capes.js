@@ -12,7 +12,8 @@ var construirCapes = {} = function(MapView,WebMap,Layer,MapImageLayer,Portal,Bas
           } 
           */                                    
     });
-    
+    var xcenter = 1.677472;
+    var ycenter = 41.761689;
     var view = new MapView({
           container: "viewDiv",
           map: map,

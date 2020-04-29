@@ -19,7 +19,7 @@ var construirCapes = {} = function(MapView,WebMap,Layer,MapImageLayer,Portal,Bas
           map: map,
           center: [xcenter, ycenter], // longitude, latitude
           //zoom: zoom,  ---> Si utilitzes com base un WebMap posa sempre el zoom inicial de tot el mapa              
-          scale: zoomToScale(zoom)
+          scale: zoomToScale(8)
     });
     
     var toggle = new BasemapToggle({

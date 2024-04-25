@@ -5,7 +5,7 @@
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
-    <title>Visor Proves Geocodificador</title>
+    <title>Visor Geocodificador ICGC - exemple ESRI</title>
     <style>
       html,
       body,
@@ -78,10 +78,12 @@
 
           // WIDGET de TOGGLE
           view.ui.add(toggle, "top-right");   //Afegeixo widget de toggle a dalt a la dreta
+          
       });
 
       function zoomToScale(zoom) {
          // Pas de nivells de zoom a escala. E zoom no funciona amb webmaps coma mapa base
+         console.info("dins zoomToScale "+zoom);
          var scale;
          switch (zoom) {
             case '20': scale = 1128.497220;break;
